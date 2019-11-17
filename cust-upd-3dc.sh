@@ -7,7 +7,6 @@ COIN_PATH='/usr/local/bin/'
 COIN_NAME=3dcoin
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 
-
 case $1 in
  BIN*)
   cd $TMP_FOLDER >/dev/null 2>&1
@@ -56,7 +55,7 @@ case $1 in
   ./configure --disable-tests --disable-gui-tests --without-gui
   for service in $(systemctl | grep $COIN_NAME | awk '{ print $1 }')
    do systemctl stop $service >/dev/null 2>&1
-done
+  done
   sleep 10
   make install-strip
   for service in $(systemctl -a | grep $COIN_NAME | awk '{ print $1 }')
