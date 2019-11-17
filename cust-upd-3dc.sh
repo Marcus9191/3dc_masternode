@@ -56,7 +56,7 @@ case $1 in
   ./configure --disable-tests --disable-gui-tests --without-gui
   for service in $(systemctl | grep $COIN_NAME | awk '{ print $1 }')
    do systemctl stop $service >/dev/null 2>&1
-  done
+done
   sleep 10
   make install-strip
   for service in $(systemctl -a | grep $COIN_NAME | awk '{ print $1 }')
