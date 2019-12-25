@@ -38,4 +38,6 @@ function get_ip() {
 }
 
 get_ip
+systemctl stop 3dcoin
 sed -i '9s/.*/bind='"$NODEIP"'/' .3dcoin/3dcoin.conf
+systemctl start 3dcoin
