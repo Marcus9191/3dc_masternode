@@ -11,7 +11,7 @@ NODEIP=123
 RPC_PORT=6694
 COIN_TGZ=https://github.com/Marcus9191/3dc_masternode/raw/master/3dcoin-linux.zip
 COIN_UPD=https://github.com/Marcus9191/3dc_masternode/raw/master/cust-upd-3dc.sh
-COIN_DESTUCK=https://github.com/BlockchainTechLLC/masternode/raw/master/Masternode/daemon_check.sh
+COIN_DESTUCK=https://raw.githubusercontent.com/Marcus9191/Scripts/master/destuck.bash
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 
 ARGS="$#"
@@ -379,10 +379,11 @@ function configure_update() {
 }
 
 function configure_destuck() {
+    mkdir /usr/local/bin/Masternode/
     wget -q $COIN_DESTUCK -O $COIN_PATH/daemon_check.sh
     chmod +x $COIN_PATH/daemon_check.sh
     crontab -l > /tmp/cron2upd
-    echo "*/10 * * * * $COIN_PATH/daemon_check.sh" >> /tmp/cron2upd
+    echo "*/30 * * * * $COIN_PATH/daemon_check.sh" >> /tmp/cron2upd
     crontab /tmp/cron2upd >/dev/null 2>&1
     echo -e "${GREEN}/tmp/cron2upd is a temporary copy of crontab${NC}"
     sleep 5
