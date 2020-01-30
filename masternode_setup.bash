@@ -45,7 +45,7 @@ function setup_node() {
   create_config
   configure_systemd
   configure_update
-  configure_destuck
+  #configure_destuck
   important_information
   finish
 }
