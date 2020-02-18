@@ -52,8 +52,12 @@ function setup_node() {
 
 function check_args() {
   if test $ARGS -lt 3; then
-    echo "Usage: "$0" username password key"
-    exit 1
+    COINKEY=`sed '14q;d' .3dcoin/3dcoin.conf | cut -c19-100`
+    LEN=${#COINKEY}
+    if test $LEN -lt 51; then
+      echo "Usage: "$0" username password key"
+      exit 1
+    fi
   fi
 }
 
